@@ -24,8 +24,12 @@ public final class R {
         public static int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static int action_settings=0x7f080001;
-        public static int text=0x7f080000;
+        public static int action_settings=0x7f080005;
+        public static int getLocationButton=0x7f080004;
+        public static int header=0x7f080001;
+        public static int latitude=0x7f080003;
+        public static int listView=0x7f080000;
+        public static int longitude=0x7f080002;
     }
     public static final class layout {
         public static int activity_example_service=0x7f030000;
@@ -36,7 +40,12 @@ public final class R {
     public static final class string {
         public static int action_settings=0x7f050002;
         public static int app_name=0x7f050000;
+        public static int example_location_service=0x7f050004;
+        public static int get_location=0x7f050005;
         public static int hello_world=0x7f050003;
+        public static int latitude_=0x7f050008;
+        public static int location_example_service=0x7f050006;
+        public static int longitude_=0x7f050007;
         public static int title_activity_example_service=0x7f050001;
     }
     public static final class style {

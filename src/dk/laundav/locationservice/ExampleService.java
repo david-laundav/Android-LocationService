@@ -2,23 +2,26 @@ package dk.laundav.locationservice;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Context;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class ExampleService extends Activity {
 	
-	private static Context context;
+	private Button getLocationButton;
+	private ListView listView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_example_service);
 		
-		addListenerOnAddCurrentPositionToWP(getAppContext());
+		getLocation();
+		
+		listView = (ListView) findViewById(R.id.listView);
 		
 	}
 
@@ -29,29 +32,22 @@ public class ExampleService extends Activity {
 		return true;
 	}
 	
-	public void addListenerOnAddCurrentPositionToWP(final Context context) {
-
-		TextView addCurrentPositionToWP = (TextView) findViewById(R.id.text);
-
-		addCurrentPositionToWP.setOnClickListener(new View.OnClickListener() {
+	public void getLocation() {
+		
+		getLocationButton = (Button) findViewById(R.id.getLocationButton);
+		
+		getLocationButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				LocationObject location = LocationService.getLocation(context);
+				LocationObject location = LocationService.getLocation(ExampleService.this);
 				if(location != null){
 					Toast.makeText(
-							context.getApplicationContext(), 
-							"Added the following location: \n" + location.getAddress(),
+							ExampleService.this, 
+							"Your current location is \n" + location.getAddress(),
 							Toast.LENGTH_LONG).show();
 				}
 			}
-
 		});
-
 	}
-	
-	public static Context getAppContext() {
-		return ExampleService.context;
-	}
-
 }
