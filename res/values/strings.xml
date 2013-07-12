@@ -4,11 +4,10 @@
     <string name="app_name">LocationService</string>
     <string name="title_activity_example_service">ExampleService</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="example_location_service">Example Location Service</string>
     <string name="get_location">Get location</string>
     <string name="location_example_service">Location Example Service</string>
     <string name="longitude_">Longitude:</string>
     <string name="latitude_">Latitude:</string>
+    <string name="default_value">-</string>
 
 </resources>

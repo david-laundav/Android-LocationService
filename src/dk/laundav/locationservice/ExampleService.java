@@ -28,7 +28,6 @@ import android.widget.Toast;
 public class ExampleService extends Activity {
 	
 	private Button getLocationButton;
-	private ListView listView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +35,6 @@ public class ExampleService extends Activity {
 		setContentView(R.layout.activity_example_service);
 		
 		getLocation();
-		
-		listView = (ListView) findViewById(R.id.listView);
 		
 	}
 
