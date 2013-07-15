@@ -17,7 +17,7 @@ import android.util.Log;
 // http://stackoverflow.com/questions/1513485/how-do-i-get-the-current-gps-location-programmatically-in-android
 
 /* 
- * Copyright 2013 Daivd Laundav
+ * Copyright 2013 David Laundav
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
