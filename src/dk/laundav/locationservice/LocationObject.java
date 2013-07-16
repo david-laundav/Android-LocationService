@@ -18,6 +18,8 @@ package dk.laundav.locationservice;
 
 public class LocationObject {
 	private String address;
+	private String city;
+	private String country;
 	private double latitude;
 	private double longitude;
 
@@ -25,12 +27,35 @@ public class LocationObject {
 		
 	}
 	
+	public LocationObject(double latitude, double longitude) {
+		setLatitude(latitude);
+		setLongitude(longitude);
+	}
+	
 	public LocationObject(String address, double latitude, double longitude) {
 		setAddress(address);
 		setLatitude(latitude);
 		setLongitude(longitude);
 	}
-
+	
+	public LocationObject(String address, String city, String country, double latitude, double longitude) {
+		setAddress(address);
+		setCity(city);
+		setCountry(country);
+		setLatitude(latitude);
+		setLongitude(longitude);
+	}
+	
+	public void setLocation(String address, String city, String country){
+		setAddress(address);
+		setCity(city);
+		setCountry(country);		
+	}
+	
+	public String getAddressWithCoordinateFallback() {
+		return ((address != null && address.length() != 0) ? address : latitude+","+longitude);
+	}
+	
 	public String getAddress() {
 		return address;
 	}
@@ -53,6 +78,22 @@ public class LocationObject {
 
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 	
 }
