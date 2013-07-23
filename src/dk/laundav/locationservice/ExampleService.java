@@ -1,11 +1,12 @@
 package dk.laundav.locationservice;
 
+import dk.laundav.locationservice.LocationObject;
+import dk.laundav.locationservice.LocationService;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ import android.widget.Toast;
 public class ExampleService extends Activity {
 	
 	private Button getLocationButton;
+	private TextView textView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +56,19 @@ public class ExampleService extends Activity {
 			@Override
 			public void onClick(View v) {
 				LocationObject location = LocationService.getLocation(ExampleService.this);
-				if(location != null){
-					Toast.makeText(
-							ExampleService.this, 
-							"Your current location is \n" + location.getAddress(),
-							Toast.LENGTH_LONG).show();
-				}
+				
+				System.out.println(
+									"Location is: " + 
+									location.getLatitude() + ", " + 
+									location.getLongitude() + ", " + 
+									location.getAddress() + ", " +
+									location.getCity() + ", " +
+									location.getCountry());
+				
+				Toast.makeText(
+						getApplicationContext(), 
+						"Your current location is \n" + location.getAddressWithCoordinateFallback(),
+						Toast.LENGTH_LONG).show();
 			}
 		});
 	}

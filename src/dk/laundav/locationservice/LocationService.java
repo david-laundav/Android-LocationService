@@ -3,6 +3,8 @@ package dk.laundav.locationservice;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import dk.laundav.locationservice.GPSTracker;
+import dk.laundav.locationservice.LocationObject;
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
@@ -28,7 +30,7 @@ public class LocationService {
 	private static GPSTracker gps;
 	
 	public static LocationObject getLocation(Context context) {
-
+		
 		gps = new GPSTracker(context);
 
 		// check if GPS enabled     
@@ -37,23 +39,32 @@ public class LocationService {
 			double latitude = gps.getLatitude();
 			double longitude = gps.getLongitude();
 
-			Geocoder geocoder;
-			List<Address> addresses;
-			geocoder = new Geocoder(context, Locale.getDefault());
+			Geocoder geocoder = new Geocoder(context, Locale.getDefault());
 			
 			LocationObject location = new LocationObject(latitude, longitude);
 			
 			try {
-				addresses = geocoder.getFromLocation(latitude, longitude, 1);
 				
-				location.setLocation(
-						addresses.get(0).getAddressLine(0), // address
-						addresses.get(0).getAddressLine(1), // city
-						addresses.get(0).getAddressLine(2)  // country
-						);
+				// addresses er altid lig 0 (ingen elementer)
+				List<Address> addresses = geocoder.getFromLocation( 
+						location.getLatitude(), 
+						location.getLongitude(), 
+						1);
+				
+				if ( addresses != null && addresses.size() > 0 ) {
+				
+					System.out.println("The geocoder works!");
+					
+					location.setLocation(
+							addresses.get(0).getAddressLine(0), // address
+							addresses.get(0).getAddressLine(1), // city
+							addresses.get(0).getAddressLine(2)  // country
+							);
+				
+				}
 				
 				return location;
-				
+
 			} catch (IOException e) {
 				e.printStackTrace();
 				return location;
@@ -67,5 +78,4 @@ public class LocationService {
 			return null;
 		}
 	}
-
 }
