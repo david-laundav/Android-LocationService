@@ -1,7 +1,7 @@
 package dk.laundav.locationservice;
 
-import dk.laundav.locationservice.LocationObject;
-import dk.laundav.locationservice.LocationService;
+import dk.laundav.locationservice.location.LocationObject;
+import dk.laundav.locationservice.service.LocationService;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -26,7 +26,7 @@ import android.widget.Toast;
  * limitations under the License.
  */
 
-public class ExampleService extends Activity {
+public class ExampleActivity extends Activity {
 	
 	private Button getLocationButton;
 	private TextView textView;
@@ -34,7 +34,7 @@ public class ExampleService extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_example_service);
+		setContentView(R.layout.activity_example_activity);
 		
 		getLocation();
 		
@@ -55,7 +55,7 @@ public class ExampleService extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				LocationObject location = LocationService.getLocation(ExampleService.this);
+				LocationObject location = LocationService.getLocation(ExampleActivity.this);
 				
 				System.out.println(
 									"Location is: " + 

@@ -1,4 +1,4 @@
-package dk.laundav.locationservice;
+package dk.laundav.locationservice.location;
 
 /* 
  * Copyright 2013 David Laundav

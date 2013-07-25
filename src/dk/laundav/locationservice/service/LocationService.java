@@ -1,10 +1,11 @@
-package dk.laundav.locationservice;
+package dk.laundav.locationservice.service;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
-import dk.laundav.locationservice.GPSTracker;
-import dk.laundav.locationservice.LocationObject;
+
+import dk.laundav.locationservice.location.LocationObject;
+import dk.laundav.locationservice.service.GPSTracker;
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;

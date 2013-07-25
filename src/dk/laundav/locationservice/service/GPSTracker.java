@@ -1,4 +1,4 @@
-package dk.laundav.locationservice;
+package dk.laundav.locationservice.service;
 
 import android.app.AlertDialog;
 import android.app.Service;
