@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-import dk.laundav.locationservice.location.LocationObject;
+import dk.laundav.data.AbstractLocationObject;
+import dk.laundav.data.LocationObject;
+import dk.laundav.data.ReverseGeocoderObject;
 import dk.laundav.locationservice.service.GPSTracker;
 import android.content.Context;
 import android.location.Address;
@@ -30,7 +32,7 @@ public class LocationService {
 	
 	private static GPSTracker gps;
 	
-	public static LocationObject getLocation(Context context) {
+	public static LocationObject getLocationFromGeocoder(Context context) {
 		
 		gps = new GPSTracker(context);
 
@@ -72,6 +74,33 @@ public class LocationService {
 			}
 
 		} else {
+			// can't get location
+			// GPS or Network is not enabled
+			// Ask user to enable GPS/network in settings
+			gps.showSettingsAlert();
+			return null;
+		}
+	}
+	
+	public static ReverseGeocoderObject getLocationFromReverseGeocoding(Context context) {
+		
+		gps = new GPSTracker(context);
+
+		// check if GPS enabled     
+		if(gps.canGetLocation()) {
+			
+			double latitude = gps.getLatitude();
+			double longitude = gps.getLongitude();
+			
+			ReverseGeocoderObject location = new ReverseGeocoderObject(latitude, longitude);
+			
+			ReverseGeocoder.setLocationContent(location);
+			
+			return location;
+			
+		}
+		
+		else {
 			// can't get location
 			// GPS or Network is not enabled
 			// Ask user to enable GPS/network in settings

@@ -1,6 +1,7 @@
-package dk.laundav.locationservice;
+package dk.laundav.activities;
 
-import dk.laundav.locationservice.location.LocationObject;
+import dk.laundav.data.ReverseGeocoderObject;
+import dk.laundav.locationservice.R;
 import dk.laundav.locationservice.service.LocationService;
 import android.os.Bundle;
 import android.app.Activity;
@@ -29,7 +30,6 @@ import android.widget.Toast;
 public class ExampleActivity extends Activity {
 	
 	private Button getLocationButton;
-	private TextView textView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,20 +55,39 @@ public class ExampleActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				LocationObject location = LocationService.getLocation(ExampleActivity.this);
+				
+				ReverseGeocoderObject location = LocationService.getLocationFromReverseGeocoding(ExampleActivity.this);
 				
 				System.out.println(
 									"Location is: " + 
 									location.getLatitude() + ", " + 
 									location.getLongitude() + ", " + 
 									location.getAddress() + ", " +
-									location.getCity() + ", " +
+									location.getAdministrative_area_level_1() + ", " + 
+									location.getAdministrative_area_level_2() + ", " + 
+									location.getRoute() + ", " + 
+									location.getPostal_code() + ", " +
+									location.getLocality() + ", " +
+									location.getStreet_number() + ", " + 
+									location.getSublocality() + ", " + 
 									location.getCountry());
 				
-				Toast.makeText(
-						getApplicationContext(), 
-						"Your current location is \n" + location.getAddressWithCoordinateFallback(),
-						Toast.LENGTH_LONG).show();
+//		
+//				TextView latitudeText = (TextView) findViewById(R.id.latitude_value);
+//				latitudeText.setText("" + location.getLatitude());
+//				
+//				TextView longitudeText = (TextView) findViewById(R.id.longitude_value);
+//				longitudeText.setText("" + location.getLongitude());
+//				
+//				TextView addressText = (TextView) findViewById(R.id.address_value);
+//				addressText.setText("" + location.getAddress());
+//				
+//				TextView cityText = (TextView) findViewById(R.id.city_value);
+//				cityText.setText("" + location.getLocality());
+//				
+//				TextView countryText = (TextView) findViewById(R.id.country_value);
+//				countryText.setText("" + location.getCountry());
+				
 			}
 		});
 	}

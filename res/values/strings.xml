@@ -9,5 +9,7 @@
     <string name="longitude_">Longitude:</string>
     <string name="latitude_">Latitude:</string>
     <string name="default_value">-</string>
+    <string name="address_">Address:</string>
+    <string name="country_">Country:</string>
 
 </resources>
