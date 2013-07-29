@@ -1,5 +1,21 @@
 package dk.laundav.data;
 
+/* 
+ * Copyright 2013 David Laundav
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 public class ReverseGeocoderObject extends AbstractLocationObject {
 	
 	private String administrative_area_level_2;
@@ -35,6 +51,29 @@ public class ReverseGeocoderObject extends AbstractLocationObject {
 		setLocality(sublocality);
 		setStreet_number(street_number);
 		setSublocality(sublocality);
+	}
+	
+	public void setAddressComponent(String key, String value) {
+		
+		// sets the content of the location object
+		if (key.equals("administrative_area_level_2")) {
+			setAdministrative_area_level_2(value);
+		} else if (key.equals("administrative_area_level_1")) {
+			setAdministrative_area_level_1(value);
+		} else if (key.equals("route")) {
+			setRoute(value);
+		} else if (key.equals("postal_code")) {
+			setPostal_code(value);
+		} else if (key.equals("locality")) {
+			setLocality(value);
+		} else if (key.equals("street_number")) {
+			setStreet_number(value);
+		} else if (key.equals("sublocality")) {
+			setSublocality(value);
+		} else if (key.equals("country")) {
+			setCountry(value);
+		}
+		
 	}
 
 	public String getAdministrative_area_level_2() {
@@ -94,7 +133,5 @@ public class ReverseGeocoderObject extends AbstractLocationObject {
 	public void setSublocality(String sublocality) {
 		this.sublocality = sublocality;
 	}
-	
-	
 
 }

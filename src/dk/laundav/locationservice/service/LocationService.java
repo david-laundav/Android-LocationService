@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import org.json.JSONException;
+
 import dk.laundav.data.AbstractLocationObject;
 import dk.laundav.data.LocationObject;
 import dk.laundav.data.ReverseGeocoderObject;
@@ -94,7 +96,15 @@ public class LocationService {
 			
 			ReverseGeocoderObject location = new ReverseGeocoderObject(latitude, longitude);
 			
-			ReverseGeocoder.setLocationContent(location);
+			try {
+				
+				ReverseGeocoder.getAddressComponents(location);
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
 			
 			return location;
 			

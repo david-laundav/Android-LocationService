@@ -1,5 +1,7 @@
 package dk.laundav.activities;
 
+import dk.laundav.data.AbstractLocationObject;
+import dk.laundav.data.LocationObject;
 import dk.laundav.data.ReverseGeocoderObject;
 import dk.laundav.locationservice.R;
 import dk.laundav.locationservice.service.LocationService;
@@ -57,6 +59,16 @@ public class ExampleActivity extends Activity {
 			public void onClick(View v) {
 				
 				ReverseGeocoderObject location = LocationService.getLocationFromReverseGeocoding(ExampleActivity.this);
+
+				//TODO: Lav fallback metode til LocationService
+				//TODO: Se på JSONTokener, GSON eller Jackson for at parse JSON
+						//JSONTOkener: http://developer.android.com/reference/org/json/JSONTokener.html
+						//GSON: https://code.google.com/p/google-gson/
+						//Jackson: http://jackson.codehaus.org/
+				//TODO: Lav example service færdig (hvordan skal indholdet se ud?)
+				//TODO: Lav Javadocs
+				//TODO: Lav README.md om når alt er færdiggjort
+				//TODO: Lav blogindlæg (ligesom til Calendar Service)
 				
 				System.out.println(
 									"Location is: " + 

@@ -57,23 +57,6 @@ public class ReverseGeocoder {
 		
 		return sb.toString();
 	}
-	
-	public static String addLocationToUrl(ReverseGeocoderObject location) {
-		
-		String latitude = String.format(Locale.US, "%.10f", location.getLatitude());
-		String longitude = String.format(Locale.US, "%.10f", location.getLongitude());
-		
-	   String url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + 
-		    		longitude + 
-		    		"," + 
-		    		latitude + 
-		    		"&sensor=true";
-	   
-	   System.out.println(url);
-	    
-	    return url;
-
-	}
 
 	public static JSONObject readJSONFromUrl(String url) throws IOException, JSONException {
 
@@ -91,9 +74,9 @@ public class ReverseGeocoder {
 		}
 	}
 	
-	public static void getAddressComponents(String url, ReverseGeocoderObject location) throws IOException, JSONException { 
+	public static void getAddressComponents(ReverseGeocoderObject location) throws IOException, JSONException { 
 		
-		JSONObject json = readJSONFromUrl(url);
+		JSONObject json = readJSONFromUrl(addLocationToUrl(location));
 		
 		JSONArray resultsArray = json.getJSONArray("results");
 		JSONObject jsonResult = resultsArray.getJSONObject(0);
@@ -111,49 +94,28 @@ public class ReverseGeocoder {
 			JSONArray typesArray = jsonAddressComponent.getJSONArray("types");
 			String key = typesArray.getString(0);
 			
-			setAddressComponents(key, value, location);
+			location.setAddressComponent(key, value);
 			
 		}
 		
 	}
 	
-	public static void setAddressComponents(String key, String value, ReverseGeocoderObject location) {
+	// Set the URL
+	private static String addLocationToUrl(AbstractLocationObject location) {
 		
-		// sets the content of the location object
-		if (key.equals("administrative_area_level_2")) {
-			location.setAdministrative_area_level_2(value);
-		} else if (key.equals("administrative_area_level_1")) {
-			location.setAdministrative_area_level_1(value);
-		} else if (key.equals("route")) {
-			location.setRoute(value);
-		} else if (key.equals("postal_code")) {
-			location.setPostal_code(value);
-		} else if (key.equals("locality")) {
-			location.setLocality(value);
-		} else if (key.equals("street_number")) {
-			location.setStreet_number(value);
-		} else if (key.equals("sublocality")) {
-			location.setSublocality(value);
-		} else if (key.equals("country")) {
-			location.setCountry(value);
-		}
+		String latitude = String.format(Locale.US, "%.10f", location.getLatitude());
+		String longitude = String.format(Locale.US, "%.10f", location.getLongitude());
 		
-	}
-	
-	public static void setLocationContent(ReverseGeocoderObject location) {
-		
-		String url = addLocationToUrl(location);
+	   String url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + 
+		    		longitude + 
+		    		"," + 
+		    		latitude + 
+		    		"&sensor=true";
+	   
+	   System.out.println(url);
+	    
+	   return url;
 
-		try {
-			
-			getAddressComponents(url, location);
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		
 	}
 
 }
